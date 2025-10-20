@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PKBM Handayani</title>
+
+    <!-- ====== GOOGLE FONTS ====== -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --biru-tua: #003b73;
+        --biru-muda: #007bff;
+        --biru-lembut: #e6f0ff;
+        --putih: #ffffff;
+        --abu: #f8faff;
+        --font-utama: "Inter", sans-serif;
+        --font-heading: "Poppins", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-utama);
+        background-color: var(--abu);
+        color: #002b5b;
+        scroll-behavior: smooth;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-heading);
+        margin: 0;
+      }
+
+      /* ===== HEADER ===== */
+      header {
+        background-color: var(--putih);
+        color: var(--biru-tua);
+        display: flex;
+        align-items: center;
+        padding: 14px 50px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      header img {
+        height: 65px;
+        margin-right: 20px;
+      }
+
+      header h1 {
+        font-size: 2em;
+        font-weight: 700;
+      }
+
+      /* ===== NAVBAR ===== */
+      nav {
+        background-color: var(--biru-tua);
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 15px 25px;
+        display: block;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        transition: 0.3s;
+      }
+
+      nav a:hover {
+        background-color: var(--biru-muda);
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        background: linear-gradient(
+            rgba(0, 50, 120, 0.55),
+            rgba(0, 50, 120, 0.55)
+          ),
+          url("https://images.unsplash.com/photo-1588072432836-e10032774350")
+            center/cover;
+        color: white;
+        text-align: center;
+        padding: 130px 20px;
+      }
+
+      .hero h2 {
+        font-size: 3em;
+        font-weight: 700;
+        margin-bottom: 12px;
+        animation: fadeUp 1s ease-out forwards;
+      }
+
+      .hero p {
+        font-size: 1.25em;
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.9;
+        animation: fadeUp 1.4s ease-out forwards;
+      }
+
+      /* ===== SECTION BASE ===== */
+      section {
+        padding: 70px 60px;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      h2.section-title {
+        color: #004080;
+        border-left: 5px solid var(--biru-muda);
+        padding-left: 10px;
+        margin-bottom: 40px;
+        font-size: 1.9em;
+        font-weight: 700;
+      }
+
+      /* ===== ANIMASI SCROLL REVEAL ===== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.9s ease;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ===== TENTANG KAMI ===== */
+      #tentang {
+        background: linear-gradient(135deg, #eaf2ff, #f8fbff);
+        border-radius: 20px;
+        padding: 70px 50px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .about-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .about-text {
+        flex: 1 1 480px;
+        font-size: 1.05em;
+        line-height: 1.8;
+      }
+
+      .about-image {
+        flex: 1 1 350px;
+        text-align: center;
+      }
+
+      .about-image img {
+        width: 90%;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transition: transform 0.4s ease;
+      }
+
+      .about-image img:hover {
+        transform: scale(1.05);
+      }
+
+      /* ===== PROGRAM PENDIDIKAN ===== */
+      #program {
+        background-color: var(--biru-lembut);
+        border-radius: 20px;
+        padding: 70px 50px;
+      }
+
+      .programs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .program-card {
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        padding: 35px 25px;
+        transition: transform 0.4s, box-shadow 0.4s;
+      }
+
+      .program-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      .program-card h3 {
+        font-size: 1.3em;
+        color: var(--biru-tua);
+        margin-bottom: 10px;
+      }
+
+      /* ===== PROFIL PENGAJAR ===== */
+      .teachers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+      }
+
+      .teacher-card {
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 25px;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .teacher-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      .teacher-card img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 15px;
+      }
+
+      .teacher-card h3 {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      /* ===== GALERI ===== */
+      #galeri {
+        background-color: var(--putih);
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .gallery-item {
+        overflow: hidden;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.03);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.08);
+      }
+
+      /* ===== LIGHTBOX (Popup Gambar) ===== */
+      .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        padding: 20px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.4s ease;
+      }
+
+      .lightbox.active {
+        display: flex;
+        animation: fadeIn 0.4s ease forwards;
+      }
+
+      .lightbox img {
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .lightbox img:hover {
+        transform: scale(1.02);
+      }
+
+      .lightbox .close-btn {
+        position: absolute;
+        top: 25px;
+        right: 35px;
+        font-size: 32px;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        padding: 5px 12px;
+        transition: background 0.3s;
+      }
+
+      .lightbox .close-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* ===== BERITA ===== */
+      .news-item {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        overflow: hidden;
+      }
+
+      .news-header {
+        background-color: var(--biru-muda);
+        color: white;
+        padding: 15px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .news-content {
+        display: none;
+        padding: 20px;
+      }
+
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      input[type="checkbox"]:checked + .news-content {
+        display: block;
+      }
+
+      /* ===== KONTAK + MAP ===== */
+      .kontak-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        align-items: flex-start;
+      }
+
+      .kontak-info {
+        flex: 1 1 300px;
+      }
+
+      .map-container {
+        flex: 1 1 400px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      iframe {
+        width: 100%;
+        height: 300px;
+        border: 0;
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background-color: var(--biru-tua);
+        color: white;
+        text-align: center;
+        padding: 25px;
+        margin-top: 40px;
+        font-size: 0.95em;
+        letter-spacing: 0.3px;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .about-container {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .about-image img {
+          width: 100%;
+        }
+
+        section {
+          padding: 50px 25px;
+        }
+
+        .hero h2 {
+          font-size: 2.2em;
+        }
+
+        .lightbox img {
+          max-width: 95%;
+          max-height: 70%;
+        }
+
+        .kontak-container {
+          flex-direction: column;
+        }
+
+        iframe {
+          height: 250px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img src="assets/img/logo.png" alt="Logo PKBM Handayani" />
+      <h1>PKBM Handayani</h1>
+    </header>
+
+    <nav>
+      <a href="#beranda">Beranda</a>
+      <a href="#tentang">Tentang Kami</a>
+      <a href="#program">Program</a>
+      <a href="#pengajar">Pengajar</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#berita">Berita</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+
+    <section id="beranda">
+      <div class="hero">
+        <h2>Selamat Datang di PKBM Handayani</h2>
+        <p>
+          Membangun Generasi Cerdas dan Mandiri Melalui Pendidikan Sepanjang
+          Hayat
+        </p>
+      </div>
+    </section>
+
+    <!-- TENTANG KAMI -->
+    <section id="tentang" class="reveal">
+      <h2 class="section-title">Tentang Kami</h2>
+      <div class="about-container">
+        <div class="about-text">
+          <p>
+            <strong>PKBM Handayani</strong> adalah lembaga pendidikan non-formal
+            yang berkomitmen menyediakan akses pendidikan untuk semua kalangan
+            masyarakat.
+          </p>
+          <p>
+            Kami menyelenggarakan program kesetaraan dan pelatihan keterampilan
+            untuk mendukung pengembangan diri dan kemandirian warga belajar.
+          </p>
+          <p>
+            Visi kami adalah
+            <em
+              >“Membangun masyarakat yang cerdas, mandiri, dan berdaya saing
+              melalui pendidikan sepanjang hayat.”</em
+            >
+          </p>
+        </div>
+        <div class="about-image">
+          <img
+            src="assets/img/utama.jpg"
+            alt="Kegiatan Belajar PKBM Handayani"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAM -->
+    <section id="program" class="reveal">
+      <h2 class="section-title">Program Pendidikan</h2>
+      <div class="programs-grid">
+        <div class="program-card">
+          <h3>📘 Paket A</h3>
+          <p>
+            Program kesetaraan setara SD yang membekali kemampuan dasar membaca,
+            menulis, dan berhitung.
+          </p>
+        </div>
+        <div class="program-card">
+          <h3>📗 Paket B</h3>
+          <p>
+            Setara SMP, menekankan pembentukan karakter dan keterampilan
+            akademik dasar.
+          </p>
+        </div>
+        <div class="program-card">
+          <h3>📙 Paket C</h3>
+          <p>
+            Setara SMA, mempersiapkan peserta untuk kuliah atau dunia kerja.
+          </p>
+        </div>
+        <div class="program-card">
+          <h3>💼 Kursus Keterampilan</h3>
+          <p>
+            Pelatihan seperti komputer, menjahit, dan wirausaha untuk
+            kemandirian ekonomi.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFIL PENGAJAR -->
+    <section id="pengajar" class="reveal">
+      <h2 class="section-title">Profil Pengajar</h2>
+      <div class="teachers-grid">
+        <div class="teacher-card">
+          <img
+            src="https://randomuser.me/api/portraits/women/68.jpg"
+            alt="Ibu Rini"
+          />
+          <h3>Ibu Rini</h3>
+          <p>Tutor Paket C - Matematika</p>
+        </div>
+        <div class="teacher-card">
+          <img
+            src="https://randomuser.me/api/portraits/men/41.jpg"
+            alt="Pak Budi"
+          />
+          <h3>Pak Budi</h3>
+          <p>Tutor Paket B - Bahasa Indonesia</p>
+        </div>
+        <div class="teacher-card">
+          <img
+            src="https://randomuser.me/api/portraits/men/35.jpg"
+            alt="Pak Andi"
+          />
+          <h3>Pak Andi</h3>
+          <p>Instruktur Kursus Komputer</p>
+        </div>
+        <div class="teacher-card">
+          <img
+            src="https://randomuser.me/api/portraits/women/52.jpg"
+            alt="Ibu Sinta"
+          />
+          <h3>Ibu Sinta</h3>
+          <p>Tutor Paket A - IPA</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERI -->
+    <section id="galeri" class="reveal">
+      <h2 class="section-title">Galeri Kegiatan</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="assets/img/kegiatan1.jpg" alt="Kegiatan 1" />
+        </div>
+        <div class="gallery-item">
+          <img src="assets/img/kegiatan2.jpg" alt="Kegiatan 2" />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d"
+            alt="Kegiatan 3"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b"
+            alt="Kegiatan 4"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX POPUP -->
+    <div class="lightbox" id="lightbox">
+      <span class="close-btn" id="closeLightbox">&times;</span>
+      <img src="" alt="Preview Gambar" id="lightboxImg" />
+    </div>
+
+    <!-- BERITA -->
+    <section id="berita" class="reveal">
+      <h2 class="section-title">Berita & Informasi</h2>
+      <div class="news-item">
+        <label class="news-header" for="news1"
+          >📢 Kegiatan Belajar Tatap Muka Dimulai</label
+        >
+        <input type="checkbox" id="news1" />
+        <div class="news-content">
+          <p>
+            PKBM Handayani kembali membuka kegiatan belajar tatap muka dengan
+            tetap menerapkan protokol kesehatan ketat.
+          </p>
+        </div>
+      </div>
+      <div class="news-item">
+        <label class="news-header" for="news2"
+          >🎓 Wisuda Paket C Tahun 2025</label
+        >
+        <input type="checkbox" id="news2" />
+        <div class="news-content">
+          <p>
+            Selamat kepada peserta Paket C yang telah berhasil menyelesaikan
+            pendidikan. Acara wisuda akan dilaksanakan pada 12 Desember 2025 di
+            Aula PKBM Handayani.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAK + GOOGLE MAPS -->
+    <section id="kontak" class="reveal">
+      <h2 class="section-title">Kontak Kami</h2>
+      <div class="kontak-container">
+        <div class="kontak-info">
+          <p>Alamat: Jl. Pendidikan No. 123, Kota Handayani</p>
+          <p>Email: info@pkbmhandayani.sch.id</p>
+          <p>Telepon: (021) 555-1234</p>
+        </div>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.9721303897045!2d108.54962587475562!3d-6.77324639322365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1c4c1cc3f1a5%3A0xfcc762bcb50b240c!2sPKBM%20HANDAYANI%20KOTA%20CIREBON!5e0!3m2!1sid!2sid!4v1760993265249!5m2!1sid!2sid"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 PKBM Handayani. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <script>
+      // ===== SCROLL REVEAL SCRIPT =====
+      const reveals = document.querySelectorAll(".reveal");
+
+      window.addEventListener("scroll", () => {
+        for (let i = 0; i < reveals.length; i++) {
+          const windowHeight = window.innerHeight;
+          const revealTop = reveals[i].getBoundingClientRect().top;
+          const revealPoint = 100;
+
+          if (revealTop < windowHeight - revealPoint) {
+            reveals[i].classList.add("active");
+          } else {
+            reveals[i].classList.remove("active");
+          }
+        }
+      });
+
+      // ===== LIGHTBOX FEATURE =====
+      const galleryImages = document.querySelectorAll(".gallery-item img");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const closeLightbox = document.getElementById("closeLightbox");
+
+      galleryImages.forEach((img) => {
+        img.addEventListener("click", () => {
+          lightbox.classList.add("active");
+          lightboxImg.src = img.src;
+        });
+      });
+
+      closeLightbox.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>
