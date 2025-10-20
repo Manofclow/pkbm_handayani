@@ -61,7 +61,7 @@
         font-weight: 700;
       }
 
-      /* ===== NAVBAR ===== */
+      /* ===== NAVBAR (DEFAULT) ===== */
       nav {
         background-color: var(--biru-tua);
         display: flex;
@@ -341,7 +341,7 @@
         }
       }
 
-      /* ===== BERITA (ACCORDION) ===== */
+      /* ===== BERITA ===== */
       .news-item {
         background: white;
         border-radius: 15px;
@@ -356,13 +356,12 @@
         padding: 15px;
         cursor: pointer;
         font-weight: 600;
-        display: block; /* Agar label mengisi penuh lebar */
+        display: block;
       }
 
       .news-content {
         display: none;
         padding: 20px;
-        transition: all 0.3s ease-out;
       }
 
       input[type="checkbox"] {
@@ -373,7 +372,7 @@
         display: block;
       }
 
-      /* ===== KONTAK + MAP ===== */
+      /* ===== KONTAK + MAP (DEFAULT) ===== */
       .kontak-container {
         display: flex;
         flex-wrap: wrap;
@@ -413,32 +412,34 @@
       @media (max-width: 768px) {
         /* HEADER */
         header {
-          padding: 10px 20px; /* Padding lebih kecil */
-          flex-direction: column; /* Tumpuk logo dan judul */
+          padding: 10px 20px;
+          flex-direction: column;
           text-align: center;
         }
 
         header img {
-          height: 50px; /* Ukuran logo lebih kecil */
+          height: 50px;
           margin-right: 0;
           margin-bottom: 5px;
         }
 
         header h1 {
-          font-size: 1.5em; /* Ukuran judul lebih kecil */
+          font-size: 1.5em;
         }
 
-        /* NAVBAR */
+        /* PERBAIKAN NAVBAR */
         nav {
-          justify-content: space-around; /* Rata tengah item nav */
-          overflow-x: auto; /* Jika item terlalu banyak, bisa digeser */
-          white-space: nowrap; /* Mencegah wrap pada item nav */
+          /* Matikan flex-wrap dan tambahkan overflow untuk horizontal scroll */
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          justify-content: flex-start; /* Biarkan menu dimulai dari kiri */
           padding: 0 10px;
         }
 
         nav a {
-          padding: 12px 15px; /* Padding lebih kecil untuk link nav */
+          padding: 12px 15px;
           font-size: 0.9em;
+          flex-shrink: 0; /* Penting: mencegah link menyusut */
         }
 
         /* HERO */
@@ -456,7 +457,7 @@
 
         /* SECTION BASE */
         section {
-          padding: 50px 20px; /* Padding section lebih kecil */
+          padding: 50px 20px;
         }
 
         h2.section-title {
@@ -476,15 +477,10 @@
         }
 
         .about-image img {
-          width: 100%; /* Gambar full width */
+          width: 100%;
         }
 
-        .about-text {
-          font-size: 1em;
-        }
-
-        /* PROGRAM & PENGAJAR */
-        /* Grid akan otomatis menyesuaikan karena minmax sudah diset (auto-fit), tapi kita bisa ubah ukuran minimal jika perlu */
+        /* GRID SECTIONS */
         .programs-grid {
           grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
           gap: 20px;
@@ -495,7 +491,6 @@
           gap: 15px;
         }
 
-        /* GALERI */
         .gallery-grid {
           grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
           gap: 15px;
@@ -513,14 +508,23 @@
           font-size: 28px;
         }
 
-        /* KONTAK */
+        /* PERBAIKAN KONTAK + MAP */
         .kontak-container {
-          flex-direction: column;
+          flex-direction: column; /* Konten kontak bertumpuk */
           gap: 30px;
         }
 
+        .kontak-info {
+          flex: 1 1 100%; /* Memastikan kontak info mengambil lebar penuh */
+        }
+
+        .map-container {
+          flex: 1 1 100%; /* Memastikan map mengambil lebar penuh */
+          /* Tinggi iframe diatur di bawah ini */
+        }
+
         iframe {
-          height: 250px;
+          height: 250px; /* Tinggi map lebih proporsional untuk mobile */
         }
 
         /* FOOTER */
@@ -530,7 +534,6 @@
         }
       }
 
-      /* Animasi FadeUp (Hanya sebagai fallback jika belum ada) */
       @keyframes fadeUp {
         from {
           opacity: 0;
