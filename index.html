@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PKBM Handayani</title>
 
-    <!-- ====== GOOGLE FONTS ====== -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
       rel="stylesheet"
@@ -342,7 +341,7 @@
         }
       }
 
-      /* ===== BERITA ===== */
+      /* ===== BERITA (ACCORDION) ===== */
       .news-item {
         background: white;
         border-radius: 15px;
@@ -357,11 +356,13 @@
         padding: 15px;
         cursor: pointer;
         font-weight: 600;
+        display: block; /* Agar label mengisi penuh lebar */
       }
 
       .news-content {
         display: none;
         padding: 20px;
+        transition: all 0.3s ease-out;
       }
 
       input[type="checkbox"] {
@@ -408,36 +409,136 @@
         letter-spacing: 0.3px;
       }
 
-      /* ===== RESPONSIVE ===== */
+      /* ===== RESPONSIVE (MOBILE) ===== */
       @media (max-width: 768px) {
-        .about-container {
-          flex-direction: column;
+        /* HEADER */
+        header {
+          padding: 10px 20px; /* Padding lebih kecil */
+          flex-direction: column; /* Tumpuk logo dan judul */
           text-align: center;
         }
 
-        .about-image img {
-          width: 100%;
+        header img {
+          height: 50px; /* Ukuran logo lebih kecil */
+          margin-right: 0;
+          margin-bottom: 5px;
         }
 
-        section {
-          padding: 50px 25px;
+        header h1 {
+          font-size: 1.5em; /* Ukuran judul lebih kecil */
+        }
+
+        /* NAVBAR */
+        nav {
+          justify-content: space-around; /* Rata tengah item nav */
+          overflow-x: auto; /* Jika item terlalu banyak, bisa digeser */
+          white-space: nowrap; /* Mencegah wrap pada item nav */
+          padding: 0 10px;
+        }
+
+        nav a {
+          padding: 12px 15px; /* Padding lebih kecil untuk link nav */
+          font-size: 0.9em;
+        }
+
+        /* HERO */
+        .hero {
+          padding: 100px 15px;
         }
 
         .hero h2 {
           font-size: 2.2em;
         }
 
+        .hero p {
+          font-size: 1em;
+        }
+
+        /* SECTION BASE */
+        section {
+          padding: 50px 20px; /* Padding section lebih kecil */
+        }
+
+        h2.section-title {
+          font-size: 1.6em;
+          margin-bottom: 30px;
+        }
+
+        /* TENTANG KAMI */
+        #tentang {
+          padding: 50px 30px;
+        }
+
+        .about-container {
+          flex-direction: column;
+          text-align: center;
+          gap: 30px;
+        }
+
+        .about-image img {
+          width: 100%; /* Gambar full width */
+        }
+
+        .about-text {
+          font-size: 1em;
+        }
+
+        /* PROGRAM & PENGAJAR */
+        /* Grid akan otomatis menyesuaikan karena minmax sudah diset (auto-fit), tapi kita bisa ubah ukuran minimal jika perlu */
+        .programs-grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 20px;
+        }
+
+        .teachers-grid {
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+          gap: 15px;
+        }
+
+        /* GALERI */
+        .gallery-grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 15px;
+        }
+
+        /* LIGHTBOX */
         .lightbox img {
           max-width: 95%;
           max-height: 70%;
         }
 
+        .lightbox .close-btn {
+          top: 15px;
+          right: 15px;
+          font-size: 28px;
+        }
+
+        /* KONTAK */
         .kontak-container {
           flex-direction: column;
+          gap: 30px;
         }
 
         iframe {
           height: 250px;
+        }
+
+        /* FOOTER */
+        footer {
+          padding: 20px 15px;
+          font-size: 0.85em;
+        }
+      }
+
+      /* Animasi FadeUp (Hanya sebagai fallback jika belum ada) */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
     </style>
@@ -469,7 +570,6 @@
       </div>
     </section>
 
-    <!-- TENTANG KAMI -->
     <section id="tentang" class="reveal">
       <h2 class="section-title">Tentang Kami</h2>
       <div class="about-container">
@@ -500,7 +600,6 @@
       </div>
     </section>
 
-    <!-- PROGRAM -->
     <section id="program" class="reveal">
       <h2 class="section-title">Program Pendidikan</h2>
       <div class="programs-grid">
@@ -534,7 +633,6 @@
       </div>
     </section>
 
-    <!-- PROFIL PENGAJAR -->
     <section id="pengajar" class="reveal">
       <h2 class="section-title">Profil Pengajar</h2>
       <div class="teachers-grid">
@@ -573,7 +671,6 @@
       </div>
     </section>
 
-    <!-- GALERI -->
     <section id="galeri" class="reveal">
       <h2 class="section-title">Galeri Kegiatan</h2>
       <div class="gallery-grid">
@@ -598,13 +695,11 @@
       </div>
     </section>
 
-    <!-- LIGHTBOX POPUP -->
     <div class="lightbox" id="lightbox">
-      <span class="close-btn" id="closeLightbox">&times;</span>
+      <span class="close-btn" id="closeLightbox">×</span>
       <img src="" alt="Preview Gambar" id="lightboxImg" />
     </div>
 
-    <!-- BERITA -->
     <section id="berita" class="reveal">
       <h2 class="section-title">Berita & Informasi</h2>
       <div class="news-item">
@@ -634,7 +729,6 @@
       </div>
     </section>
 
-    <!-- KONTAK + GOOGLE MAPS -->
     <section id="kontak" class="reveal">
       <h2 class="section-title">Kontak Kami</h2>
       <div class="kontak-container">
@@ -654,7 +748,7 @@
     </section>
 
     <footer>
-      <p>&copy; 2025 PKBM Handayani. Semua Hak Dilindungi.</p>
+      <p>© 2025 PKBM Handayani. Semua Hak Dilindungi.</p>
     </footer>
 
     <script>
